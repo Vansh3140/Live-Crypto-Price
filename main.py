@@ -134,7 +134,7 @@ def main():
             if os.path.exists(chart_filename):
                 os.remove(chart_filename)
                 logging.info(f"Temporary file '{chart_filename}' deleted.")
-            time.sleep(45)
+            time.sleep(60)
     except Exception as e:
         logging.exception(f"An error occurred: {e}")
 

@@ -95,6 +95,7 @@ The report includes:
 - A market share pie chart.
 
 ### Google Sheet
+Link : https://docs.google.com/spreadsheets/d/1LLKPb0M_knhU8_eFJfV2DEjsTLWQBlRCs4P53nb4ELQ/
 Columns:
 - **Cryptocurrency Name**
 - **Symbol**

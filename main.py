@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from fpdf import FPDF
 import logging
 from update_sheet import update_google_sheet
+import time
 
 # Logging Initialization
 logging.basicConfig(
@@ -121,17 +122,19 @@ def generate_pdf_report(top_5, avg_price, highest, lowest, chart_filename):
 
 def main():
     try:
-        df = fetch_data()
-        update_google_sheet(df)
-        top_5 = analyze_top_cryptos(df)
-        avg_price = calculate_average_price(df)
-        highest, lowest = analyze_price_changes(df)
-        chart_filename = generate_pie_chart(df)
-        generate_pdf_report(top_5, avg_price, highest, lowest, chart_filename)
-
-        if os.path.exists(chart_filename):
-            os.remove(chart_filename)
-            logging.info(f"Temporary file '{chart_filename}' deleted.")
+        while True:
+            df = fetch_data()
+            update_google_sheet(df)
+            top_5 = analyze_top_cryptos(df)
+            avg_price = calculate_average_price(df)
+            highest, lowest = analyze_price_changes(df)
+            chart_filename = generate_pie_chart(df)
+            generate_pdf_report(top_5, avg_price, highest, lowest, chart_filename)
+    
+            if os.path.exists(chart_filename):
+                os.remove(chart_filename)
+                logging.info(f"Temporary file '{chart_filename}' deleted.")
+            times.sleep(5)
     except Exception as e:
         logging.exception(f"An error occurred: {e}")
 
